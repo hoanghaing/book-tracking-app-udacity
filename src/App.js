@@ -1,9 +1,20 @@
 import "./App.css";
-import { useState } from "react";
-import BookShelf from './BookShelf';
+import { useState, useEffect } from "react";
+import BookShelf from './components/BookShelf';
+import * as BooksAPI from './BooksAPI';
 function App() {
+  const [books, setBooks] = useState([]);
   const [showSearchPage, setShowSearchpage] = useState(false);
-
+  useEffect(() => {
+    // Perform API call or any other side effects here
+    fetchData();
+  }, []);
+  const fetchData = () => {
+    // Perform your API call here
+    BooksAPI.getAll().then(books => {
+      setBooks(books);
+    });
+  };
   return (
     <div className="app">
       {showSearchPage ? (
@@ -33,7 +44,9 @@ function App() {
           </div>
           <div className="list-books-content">
             <div>
-              <BookShelf />
+              <BookShelf title="Currently Reading" />
+              <BookShelf title="Want to Read" />
+              <BookShelf title="Read" />
               <div className="bookshelf">
                 <h2 className="bookshelf-title">Currently Reading</h2>
                 <div className="bookshelf-books">
