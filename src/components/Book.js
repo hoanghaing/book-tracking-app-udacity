@@ -1,12 +1,15 @@
 const Book = (props) => {
-  const { img, title, author, genre } = props
+  const { id, img, title, author, genre, changeGenre } = props;
   const genres = ['currentlyReading', 'wantToRead', 'read', 'none'];
   const genreTiles = {
     currentlyReading: 'Currently Reading',
     wantToRead: 'Want to Read',
     read: 'Read',
     none: 'None'
-  }
+  };
+  const handleSelectChange = (event) => {
+    changeGenre(id, event.target.value)
+  };
   return (
     <li>
       <div className="book">
@@ -21,14 +24,14 @@ const Book = (props) => {
             }}
           ></div>
           <div className="book-shelf-changer">
-            <select>
-              <option value="none" disabled>
+            <select onChange={handleSelectChange}>
+              <option key={`item-option-${title}`} value="none" disabled>
                 Move to...
               </option>
               {genres.map(item => (
                 item === genre ? <></>
                   : (
-                    <option key={item} value={item}>
+                    <option key={`item-option-${title}-${item}`} value={item}>
                       {genreTiles[item]}
                     </option>
                   )
@@ -39,7 +42,7 @@ const Book = (props) => {
         <div className="book-title">{title}</div>
         <div className="book-authors">{author}</div>
       </div>
-    </li>
+    </li >
   )
 };
 export default Book;

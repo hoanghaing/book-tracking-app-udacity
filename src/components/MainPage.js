@@ -15,6 +15,13 @@ const MainPage = () => {
       setBooks(list);
     });
   };
+  const updateBookCategory = (itemId, newGenre) => {
+    setBooks(prevItems =>
+      prevItems.map(item =>
+        item.id === itemId ? { ...item, shelf	: newGenre } : item
+      )
+    );
+  };
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -22,9 +29,9 @@ const MainPage = () => {
       </div>
       <div className="list-books-content">
         <div>
-          <BookShelf title="Currently Reading" books={books} shelf="currentlyReading" />
-          <BookShelf title="Want to Read" books={books} shelf="wantToRead" />
-          <BookShelf title="Read" books={books} shelf="read" />
+          <BookShelf title="Currently Reading" books={books} shelf="currentlyReading" changeGenre={updateBookCategory}/>
+          <BookShelf title="Want to Read" books={books} shelf="wantToRead" changeGenre={updateBookCategory}/>
+          <BookShelf title="Read" books={books} shelf="read" changeGenre={updateBookCategory}/>
         </div>
       </div>
       <SearchTrigger />

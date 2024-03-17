@@ -8,11 +8,13 @@ const BookList = (props) => {
         {books.map((item, index) => (
           item.shelf === shelf ?
             <Book
-              key={index}
+              key={`book-${index}`}
+              id={item.id}
               img={item.imageLinks.thumbnail}
               title={item.title}
               author={item.authors[0]}
               genre={item.shelf}
+              changeGenre={props.changeGenre}
             /> : ''
         ))}
       </ol>
