@@ -41,6 +41,13 @@ const Searchpage = (props) => {
       )
     );
   }; 
+  const handleChangeGenre = (item, newGenre) => {
+    if (currentIds.includes(item.id)) {
+      updateBookCategory(item.id, newGenre);
+    } else {
+      addBookToMyList(item.id, newGenre);
+    }
+  }
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -68,7 +75,7 @@ const Searchpage = (props) => {
               title={item.title}
               author={item.authors[0]}
               genre={item.shelf}
-              changeGenre={() => {console.log("Ahihi")}}
+              changeGenre={handleChangeGenre}
             />
           ))}
         </ol>

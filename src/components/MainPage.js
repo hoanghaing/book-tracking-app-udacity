@@ -19,11 +19,10 @@ const MainPage = (props) => {
     });
   };
   const updateBookCategory = (itemId, newGenre) => {
-    setBooks(prevItems =>
-      prevItems.map(item =>
-        item.id === itemId ? { ...item, shelf: newGenre } : item
-      )
-    );
+
+    const newBooks = books.map(item => item.id === itemId ? { ...item, shelf: newGenre } : item);
+
+    setBooks(newBooks);
   };
   return (
     <div className="list-books">

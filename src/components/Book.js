@@ -1,5 +1,5 @@
 const Book = (props) => {
-  const { id, img, title, author, genre, changeGenre } = props;
+  const { item, changeGenre } = props;
   const genres = ['currentlyReading', 'wantToRead', 'read', 'none'];
   const genreTiles = {
     currentlyReading: 'Currently Reading',
@@ -8,7 +8,10 @@ const Book = (props) => {
     none: 'None'
   };
   const handleSelectChange = (event) => {
-    changeGenre(id, event.target.value)
+    event.preventDefault();
+    console.log('x: ', item.id);
+    console.log('y: ', event.target.value);
+    changeGenre(item.id, event.target.value)
   };
   return (
     <li>
@@ -20,27 +23,26 @@ const Book = (props) => {
               width: 128,
               height: 193,
               backgroundImage:
-                `url("${img}")`,
+                `url("${item.imageLinks.thumbnail}")`,
             }}
           ></div>
           <div className="book-shelf-changer">
             <select onChange={handleSelectChange}>
-              <option key={`item-option-${title}`} value="none" disabled>
+              <option key={`item-option-${item.title}`} value="0">
                 Move to...
               </option>
-              {genres.map(item => (
-                item === genre ? <></>
-                  : (
-                    <option key={`item-option-${title}-${item}`} value={item}>
-                      {genreTiles[item]}
-                    </option>
-                  )
+              {genres.map(genre => (
+                (
+                  <option key={`item-option-${item.title}-${genre}`} value={genre}>
+                    {genreTiles[genre]}
+                  </option>
+                )
               ))}
             </select>
           </div>
         </div>
-        <div className="book-title">{title}</div>
-        <div className="book-authors">{author}</div>
+        <div className="book-title">{item.title}</div>
+        <div className="book-authors">{item.authors[0]}</div>
       </div>
     </li >
   )

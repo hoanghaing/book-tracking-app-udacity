@@ -1,7 +1,7 @@
 
 import Book from './Book';
 const BookList = (props) => {
-  const { books, shelf } = props;
+  const { books, shelf, changeGenre } = props;
   return (
     <div className="bookshelf-books">
       <ol className="books-grid">
@@ -9,16 +9,17 @@ const BookList = (props) => {
           item.shelf === shelf ?
             <Book
               key={`book-${index}`}
-              id={item.id}
-              img={item.imageLinks.thumbnail}
-              title={item.title}
-              author={item.authors[0]}
-              genre={item.shelf}
-              changeGenre={props.changeGenre}
-            /> : ''
+              item={item}
+              changeGenre={changeGenre}
+            /> : <></>
         ))}
       </ol>
     </div>
   )
 };
 export default BookList;
+// id={item.id}
+// img={item.imageLinks.thumbnail}
+// title={item.title}
+// author={item.authors[0]}
+// genre={item.shelf}
