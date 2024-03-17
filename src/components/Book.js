@@ -9,8 +9,6 @@ const Book = (props) => {
   };
   const handleSelectChange = (event) => {
     event.preventDefault();
-    console.log('x: ', item.id);
-    console.log('y: ', event.target.value);
     changeGenre(item.id, event.target.value)
   };
   return (

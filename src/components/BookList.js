@@ -18,8 +18,3 @@ const BookList = (props) => {
   )
 };
 export default BookList;
-// id={item.id}
-// img={item.imageLinks.thumbnail}
-// title={item.title}
-// author={item.authors[0]}
-// genre={item.shelf}
