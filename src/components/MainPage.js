@@ -1,27 +1,10 @@
-import { useEffect } from "react";
 import BookShelf from './BookShelf';
 import SearchTrigger from './SearchTrigger';
-import * as BooksAPI from '../BooksAPI';
 
 const MainPage = (props) => {
-  const { setIds, setBooks, books } = props
-
-  useEffect(() => {
-    // Perform API call or any other side effects here
-    fetchData();
-  }, []);
-  const fetchData = () => {
-    // Perform your API call here
-    BooksAPI.getAll().then(list => {
-      setBooks(list);
-      const currentIds = list.map((item) => item.id)
-      setIds(currentIds);
-    });
-  };
-  const updateBookCategory = (itemId, newGenre) => {
-
-    const newBooks = books.map(item => item.id === itemId ? { ...item, shelf: newGenre } : item);
-
+  const { setBooks, books } = props
+  const updateBookCategory = (book, newGenre) => {
+    const newBooks = books.map(item => item.id === book.id ? { ...item, shelf: newGenre } : item);
     setBooks(newBooks);
   };
   return (

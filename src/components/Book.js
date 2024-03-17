@@ -1,5 +1,5 @@
 const Book = (props) => {
-  const { item, changeGenre } = props;
+  const { item, currentIds, changeGenre } = props;
   const genres = ['currentlyReading', 'wantToRead', 'read', 'none'];
   const genreTiles = {
     currentlyReading: 'Currently Reading',
@@ -9,7 +9,7 @@ const Book = (props) => {
   };
   const handleSelectChange = (event) => {
     event.preventDefault();
-    changeGenre(item.id, event.target.value)
+    changeGenre(item, event.target.value)
   };
   return (
     <li>
@@ -26,8 +26,9 @@ const Book = (props) => {
           ></div>
           <div className="book-shelf-changer">
             <select onChange={handleSelectChange}>
-              <option key={`item-option-${item.title}`} value="0">
-                Move to...
+              <option key={`item-option-${item.title}`} value="0"> {
+                currentIds.includes(item.id) ? 'Move to...' : 'Add to...'
+              }
               </option>
               {genres.map(genre => (
                 (
@@ -39,8 +40,8 @@ const Book = (props) => {
             </select>
           </div>
         </div>
-        <div className="book-title">{item.title}</div>
-        <div className="book-authors">{item.authors[0]}</div>
+        <div className="book-title">{item.title ? item.title : ''}</div>
+        <div className="book-authors">{item.authors ? item.authors[0] : ''}</div>
       </div>
     </li >
   )

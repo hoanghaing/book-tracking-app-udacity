@@ -70,11 +70,8 @@ const Searchpage = (props) => {
           {searchResults.map((item, index) => (
             <Book
               key={`book-${index}`}
-              id={item.id}
-              img={item.imageLinks.thumbnail}
-              title={item.title}
-              author={item.authors[0]}
-              genre={item.shelf}
+              item={item}
+              currentIds={currentIds}
               changeGenre={handleChangeGenre}
             />
           ))}
