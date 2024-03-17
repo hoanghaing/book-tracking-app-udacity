@@ -26,8 +26,8 @@ function App() {
     <div className="app">
       <Router>
         <Routes>
-          <Route path="/" element={<MainPage setIds={setIds} books={books} setBooks={setBooks} />} />
-          <Route path="/search" element={<SearchPage currentIds={ids} books={books} setBooks={setBooks} />} />
+          <Route path="/" element={<MainPage books={books} setBooks={setBooks} />} />
+          <Route path="/search" element={<SearchPage currentIds={ids} />} />
         </Routes>
       </Router>
     </div>

@@ -1,11 +1,13 @@
 import BookShelf from './BookShelf';
 import SearchTrigger from './SearchTrigger';
+import * as BooksAPI from '../BooksAPI';
 
 const MainPage = (props) => {
   const { setBooks, books } = props
   const updateBookCategory = (book, newGenre) => {
     const newBooks = books.map(item => item.id === book.id ? { ...item, shelf: newGenre } : item);
     setBooks(newBooks);
+    BooksAPI.update(book, newGenre);
   };
   return (
     <div className="list-books">

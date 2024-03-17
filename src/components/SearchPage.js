@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as BooksAPI from '../BooksAPI';
 import Book from './Book';
 const Searchpage = (props) => {
-  const { currentIds, setBooks } = props;
+  const { currentIds } = props;
   const [searchResults, setSearchResults] = useState([]);
   const useThrottledCallback = (callback, delay) => {
     const [timeoutId, setTimeoutId] = useState(null);
@@ -24,28 +24,20 @@ const Searchpage = (props) => {
       return;
     }
     BooksAPI.search(event.target.value, 20).then((result) => {
-      setSearchResults(result);
+      if (result.length) setSearchResults(result);
     });
   }, 500);
-  const addBookToMyList = (itemId, newGenre) => {
-    setBooks(prevItems =>
-      prevItems.map(item =>
-        item.id === itemId ? { ...item, shelf: newGenre } : item
-      )
-    );
+  const addBookToMyList = (book, newGenre) => {
+    BooksAPI.update(book, newGenre);
   };
-  const updateBookCategory = (itemId, newGenre) => {
-    setBooks(prevItems =>
-      prevItems.map(item =>
-        item.id === itemId ? { ...item, shelf: newGenre } : item
-      )
-    );
-  }; 
+  const updateBookCategory = (book, newGenre) => {
+    BooksAPI.update(book, newGenre);
+  };
   const handleChangeGenre = (item, newGenre) => {
     if (currentIds.includes(item.id)) {
-      updateBookCategory(item.id, newGenre);
+      updateBookCategory(item, newGenre);
     } else {
-      addBookToMyList(item.id, newGenre);
+      addBookToMyList(item, newGenre);
     }
   }
   return (
