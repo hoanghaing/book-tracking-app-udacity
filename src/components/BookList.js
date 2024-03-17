@@ -7,12 +7,13 @@ const BookList = (props) => {
       <ol className="books-grid">
         {books.map((item, index) => (
           item.shelf === shelf ?
-          <Book 
-            key={index}
-            img={item.imageLinks.thumbnail}
-            title={item.title}
-            author={item.authors[0]}
-          /> : ''
+            <Book
+              key={index}
+              img={item.imageLinks.thumbnail}
+              title={item.title}
+              author={item.authors[0]}
+              genre={item.shelf}
+            /> : ''
         ))}
       </ol>
     </div>
