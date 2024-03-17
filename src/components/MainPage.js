@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import BookShelf from './BookShelf';
 import SearchTrigger from './SearchTrigger';
 import * as BooksAPI from '../BooksAPI';
