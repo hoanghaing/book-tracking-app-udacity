@@ -1,11 +1,10 @@
-const SearchBooks = (props) => {
+const Searchpage = (props) => {
   return (
     <div className="search-books">
       <div className="search-books-bar">
         <a
           className="close-search"
-          href="/#"
-          onClick={props.onClick}
+          href="/"
         >
           Close
         </a>
@@ -21,6 +20,5 @@ const SearchBooks = (props) => {
       </div>
     </div>
   )
-}
-
-export default SearchBooks;
+};
+export default Searchpage

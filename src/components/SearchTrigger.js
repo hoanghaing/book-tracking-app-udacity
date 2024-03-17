@@ -2,8 +2,7 @@ const SearchTrigger = (props) => {
   return (
     <div className="open-search">
       <a
-        href="/#"
-        onClick={props.onClick}
+        href="/search"
       >
         Add a book
       </a>
