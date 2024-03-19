@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 const Book = (props) => {
   const { item, currentIds, changeGenre } = props;
   const genres = ['currentlyReading', 'wantToRead', 'read', 'none'];
@@ -21,7 +22,7 @@ const Book = (props) => {
               width: 128,
               height: 193,
               backgroundImage:
-                `url("${item.imageLinks.thumbnail}")`,
+                `url("${item?.imageLinks?.thumbnail}")`,
             }}
           ></div>
           <div className="book-shelf-changer">
@@ -46,4 +47,10 @@ const Book = (props) => {
     </li >
   )
 };
+// eslint-disable-next-line react/no-typos
+Book.PropTypes = {
+  item: PropTypes.object,
+  currentIds: PropTypes.array,
+  changeGenre: PropTypes.func,
+}
 export default Book;

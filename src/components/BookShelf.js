@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import BookList from './BookList';
 const BookShelf = (props) => {
   const { books, shelf, changeGenre } = props;
@@ -8,5 +9,10 @@ const BookShelf = (props) => {
     </div>
   )
 }
-
+// eslint-disable-next-line react/no-typos
+BookShelf.PropTypes = {
+  books: PropTypes.array,
+  shelf: PropTypes.string,
+  changeGenre: PropTypes.func,
+}
 export default BookShelf;

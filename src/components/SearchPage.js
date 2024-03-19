@@ -1,6 +1,7 @@
 import { useState } from "react";
 import * as BooksAPI from '../BooksAPI';
 import Book from './Book';
+import PropTypes from 'prop-types';
 const Searchpage = (props) => {
   const { currentIds } = props;
   const [searchResults, setSearchResults] = useState([]);
@@ -19,14 +20,14 @@ const Searchpage = (props) => {
     return throttledCallback;
   }
   const handleChangeThrottled = useThrottledCallback((event) => {
-    if (!event.target.value) {
+    if (!event.target.value || event.target.value.trim().length === 0) {
       setSearchResults([]);
       return;
     }
     BooksAPI.search(event.target.value, 20).then((result) => {
       if (result.length) setSearchResults(result);
     });
-  }, 500);
+  }, 300);
   const addBookToMyList = (book, newGenre) => {
     BooksAPI.update(book, newGenre);
   };
@@ -72,4 +73,8 @@ const Searchpage = (props) => {
     </div>
   )
 };
+// eslint-disable-next-line react/no-typos
+Searchpage.PropTypes = {
+  currentIds: PropTypes.array
+}
 export default Searchpage

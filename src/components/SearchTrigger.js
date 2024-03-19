@@ -1,4 +1,4 @@
-const SearchTrigger = (props) => {
+const SearchTrigger = () => {
   return (
     <div className="open-search">
       <a

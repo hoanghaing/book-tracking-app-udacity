@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import BookShelf from './BookShelf';
 import SearchTrigger from './SearchTrigger';
 import * as BooksAPI from '../BooksAPI';
@@ -25,5 +26,9 @@ const MainPage = (props) => {
     </div>
   )
 }
-
+// eslint-disable-next-line react/no-typos
+MainPage.PropTypes = {
+  setBooks: PropTypes.func,
+  books: PropTypes.array
+}
 export default MainPage;
