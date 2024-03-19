@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
+import { useLocation  } from "react-router-dom";
 const Book = (props) => {
+  const location = useLocation();
   const { item, currentIds, changeGenre } = props;
   const genres = ['currentlyReading', 'wantToRead', 'read', 'none'];
   const genreTiles = {
@@ -28,13 +30,18 @@ const Book = (props) => {
           <div className="book-shelf-changer">
             <select onChange={handleSelectChange}>
               <option key={`item-option-${item.title}`} value="0"> {
-                currentIds.includes(item.id) ? 'Move to...' : 'Add to...'
+                (!currentIds.includes(item.id) && location.pathname.includes('search')) ? 'Add to...' : 'Move to...'
               }
               </option>
               {genres.map(genre => (
+                 
                 (
                   <option key={`item-option-${item.title}-${genre}`} value={genre}>
-                    {genreTiles[genre]}
+                    {
+                      item.shelf === genre ? 
+                      `* ${genreTiles[genre]}` :
+                      genreTiles[genre]
+                    }
                   </option>
                 )
               ))}
