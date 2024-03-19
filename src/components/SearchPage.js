@@ -3,7 +3,7 @@ import * as BooksAPI from '../BooksAPI';
 import Book from './Book';
 import PropTypes from 'prop-types';
 const Searchpage = (props) => {
-  const { currentIds } = props;
+  const { currentIds, shelfIds } = props;
   const [searchResults, setSearchResults] = useState([]);
   const useThrottledCallback = (callback, delay) => {
     const [timeoutId, setTimeoutId] = useState(null);
@@ -65,6 +65,7 @@ const Searchpage = (props) => {
               key={`book-${index}`}
               item={item}
               currentIds={currentIds}
+              shelfIds={shelfIds}
               changeGenre={handleChangeGenre}
             />
           ))}
@@ -75,6 +76,7 @@ const Searchpage = (props) => {
 };
 // eslint-disable-next-line react/no-typos
 Searchpage.PropTypes = {
-  currentIds: PropTypes.array
+  currentIds: PropTypes.array,
+  shelfIds: PropTypes.object
 }
 export default Searchpage

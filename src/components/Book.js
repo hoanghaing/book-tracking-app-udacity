@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import { useLocation  } from "react-router-dom";
 const Book = (props) => {
   const location = useLocation();
-  const { item, currentIds, changeGenre } = props;
-  const genres = ['currentlyReading', 'wantToRead', 'read', 'none'];
+  const { item, currentIds, changeGenre, shelfIds = {} } = props;
+  const fullGenres = ['currentlyReading', 'wantToRead', 'read', 'none'];
+  const partGenres = ['currentlyReading', 'wantToRead', 'read'];
   const genreTiles = {
     currentlyReading: 'Currently Reading',
     wantToRead: 'Want to Read',
@@ -33,18 +34,31 @@ const Book = (props) => {
                 (!currentIds.includes(item.id) && location.pathname.includes('search')) ? 'Add to...' : 'Move to...'
               }
               </option>
-              {genres.map(genre => (
-                 
-                (
-                  <option key={`item-option-${item.title}-${genre}`} value={genre}>
-                    {
-                      item.shelf === genre ? 
-                      `* ${genreTiles[genre]}` :
-                      genreTiles[genre]
-                    }
-                  </option>
-                )
-              ))}
+              {
+                (!currentIds.includes(item.id) && location.pathname.includes('search')) ?
+                partGenres.map(genre => (
+                  (
+                    <option key={`item-option-${item.title}-${genre}`} value={genre}>
+                      {
+                        item.shelf === genre || shelfIds[genre]?.includes(item.id) ? 
+                        `* ${genreTiles[genre]}` :
+                        genreTiles[genre]
+                      }
+                    </option>
+                  )
+                )) :
+                fullGenres.map(genre => (
+                  (
+                    <option key={`item-option-${item.title}-${genre}`} value={genre}>
+                      {
+                        item.shelf === genre || shelfIds[genre]?.includes(item.id) ? 
+                        `* ${genreTiles[genre]}` :
+                        genreTiles[genre]
+                      }
+                    </option>
+                  )
+                ))
+              }
             </select>
           </div>
         </div>
@@ -58,6 +72,7 @@ const Book = (props) => {
 Book.PropTypes = {
   item: PropTypes.object,
   currentIds: PropTypes.array,
+  shelfIds: PropTypes.object,
   changeGenre: PropTypes.func,
 }
 export default Book;

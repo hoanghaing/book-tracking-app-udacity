@@ -10,6 +10,7 @@ import * as BooksAPI from './BooksAPI';
 function App() {
   const [books, setBooks] = useState([]);
   const [ids, setIds] = useState([]);
+  const [shelfIds, setShelfIds] = useState({});
   useEffect(() => {
     // Perform API call or any other side effects here
     fetchData();
@@ -19,7 +20,16 @@ function App() {
     // Perform your API call here
     BooksAPI.getAll().then(list => {
       setBooks(list);
-      const currentIds = list.map((item) => item.id)
+      const currentIds = list.map((item) => item.id);
+      const shelfs = {
+        currentlyReading: [],
+        wantToRead: [],
+        read: []
+      }
+      list.forEach(element => {
+        shelfs[element.shelf].push(element.id);
+      });
+      setShelfIds(shelfs);
       setIds(currentIds);
     });
   };
@@ -29,7 +39,7 @@ function App() {
         <Routes>
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<MainPage books={books} setBooks={setBooks} />} />
-          <Route path="/search" element={<SearchPage currentIds={ids} />} />
+          <Route path="/search" element={<SearchPage currentIds={ids} shelfIds={shelfIds} />} />
         </Routes>
       </Router>
     </div>
