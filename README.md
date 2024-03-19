@@ -82,8 +82,9 @@ search(query);
 ## Learn More
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 To learn React, check out the [React documentation](https://reactjs.org/).
+To learn Tailwind, check out the [Tailwind Documentation](https://tailwindcss.com/).
 To learn more about Udacity React Nano degree: [See Udacity Course](https://www.udacity.com/enrollment/nd019/8.0.4).
-To find useful boiler plate for this project: [Sample](https://github.com/udacity/nd0191-c1-myreads/).
+To find useful boilerplate for this project: [Sample](https://github.com/udacity/nd0191-c1-myreads/).
 ## Contributing
 This repository is the student's exercise project code. Therefore, we most likely will not accept pull requests.
 

@@ -1,6 +1,7 @@
 import "./App.css";
 import SearchPage from './components/SearchPage';
 import MainPage from './components/MainPage';
+import NotFound from './components/NotFound';
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect } from "react";
@@ -26,6 +27,7 @@ function App() {
     <div className="app">
       <Router>
         <Routes>
+          <Route path="*" element={<NotFound />} />
           <Route path="/" element={<MainPage books={books} setBooks={setBooks} />} />
           <Route path="/search" element={<SearchPage currentIds={ids} />} />
         </Routes>
