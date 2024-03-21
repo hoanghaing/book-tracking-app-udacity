@@ -27,7 +27,7 @@ const MainPage = (props) => {
   )
 }
 // eslint-disable-next-line react/no-typos
-MainPage.PropTypes = {
+MainPage.propTypes = {
   setBooks: PropTypes.func,
   books: PropTypes.array
 }

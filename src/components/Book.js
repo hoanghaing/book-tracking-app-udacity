@@ -63,7 +63,7 @@ const Book = (props) => {
   )
 };
 // eslint-disable-next-line react/no-typos
-Book.PropTypes = {
+Book.propTypes = {
   item: PropTypes.object,
   currentIds: PropTypes.array,
   shelfIds: PropTypes.object,

@@ -8,17 +8,17 @@ const BookList = (props) => {
         {books.map((item, index) => (
           item.shelf === shelf ?
             <Book
-              key={`book-${index}`}
+              key={`book-${item.id}`}
               item={item}
               changeGenre={changeGenre}
-            /> : <></>
+            /> : ""
         ))}
       </ol>
     </div>
   )
 };
 // eslint-disable-next-line react/no-typos
-BookList.PropTypes = {
+BookList.propTypes = {
   books: PropTypes.array,
   shelf: PropTypes.string,
   changeGenre: PropTypes.func,

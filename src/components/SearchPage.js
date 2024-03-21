@@ -75,7 +75,7 @@ const Searchpage = (props) => {
   )
 };
 // eslint-disable-next-line react/no-typos
-Searchpage.PropTypes = {
+Searchpage.propTypes = {
   currentIds: PropTypes.array,
   shelfIds: PropTypes.object
 }
