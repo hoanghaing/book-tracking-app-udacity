@@ -10,7 +10,6 @@ const BookList = (props) => {
             <Book
               key={`book-${index}`}
               item={item}
-              currentIds={[]}
               changeGenre={changeGenre}
             /> : <></>
         ))}
